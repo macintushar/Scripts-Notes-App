@@ -14,7 +14,7 @@ import NewNote from './components/new-note';
 import LoadingScreen from './components/loading';
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -45,9 +45,9 @@ export default function App() {
       <Routes>
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
-        <Route path="/" element= {user ? <><Navbar user={user} /><Home user={user} /></> : <Navigate to="/login" />} />
-        <Route path="/note/:id" element= {user ? <><Navbar user={user} /><ViewNote user={user} /></> : <Navigate to="/login" />} />\
-        <Route path="/new" element= {user ? <><Navbar user={user} /><NewNote user={user} /></> : <Navigate to="/login" />} />\
+        <Route path="/" element= {user ? <><Navbar /><Home /></> : <Navigate to="/login" />} />
+        <Route path="/note/:id" element= {user ? <><Navbar /><ViewNote session={user} /></> : <Navigate to="/login" />} />\
+        <Route path="/new" element= {user ? <><Navbar /><NewNote /></> : <Navigate to="/login" />} />\
       </Routes>
     </>
   );

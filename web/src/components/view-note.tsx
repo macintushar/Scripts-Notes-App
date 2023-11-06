@@ -1,19 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import LoadingScreen from './loading';
 
 export default function ViewNote({ session }) {
-    const [userNotes, setUserNotes] = useState(null);
+    const [userNotes, setUserNotes] = useState<any>(null);
     const params = useParams();
     const note_uid = params.id;
+
+    const navigate = useNavigate();
 
     async function handleClose() {
         const new_title = (document.getElementById("note-title") as HTMLInputElement).value;
         const new_body = (document.getElementById("note-body") as HTMLInputElement).value;
-
+        console.log(note_uid,new_title,new_body)
+        navigate("/")
     }
     const fetchData = async () => {
-
+      const sample = [
+        {
+          note_body:"Text",
+          note_title:"123"
+        }
+      ]
+      setUserNotes(sample)
     };
 
   useEffect(() => {
