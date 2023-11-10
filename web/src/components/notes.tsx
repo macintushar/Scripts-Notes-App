@@ -20,7 +20,7 @@ export default function Notes({ note }) {
   }
   
   return(
-    <div className="group rounded-xl max-h-128 max-w-128 w-fit m-3 min-w-[164px] h-fit bg-slate-200 pb-3 shadow-md dark:shadow-slate-500 dark:bg-slate-600 dark:text-white">
+    <div className="group rounded-xl max-h-128 max-w- w-fit m-3 min-w-[164px] h-fit bg-slate-200 pb-3 shadow-md dark:shadow-slate-500 dark:bg-slate-600 dark:text-white">
       <Link to={'/note/' + note_id}>
       <article className="pt-6 pl-6 pr-6 ">
         {note_title ? <h1 className="mb-1"><b>{note_title}</b></h1> : <></>}

@@ -7,6 +7,7 @@ import { app } from '../firebaseConfig';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -17,7 +18,7 @@ export default function Login() {
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, email, password)
       .catch((error) => {
-        console.error(error);
+        console.error(error, typeof(error));
       });
   }
 
@@ -50,6 +51,7 @@ export default function Login() {
             <Link to="/signup"><p className='dark:text-slate-50 mt-5'>Don't have an account? <b className='underline hover:text-blue-100'>Sign up here</b></p></Link>
           </div>
         </form>
+        {/* {loginError.length > 0 ? <h1>Error: {loginError}</h1> : <>ERR</>} */}
       </div>
     </div>
   );

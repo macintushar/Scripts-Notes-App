@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import LoadingScreen from './loading';
 
 export default function ViewNote({ session }) {
