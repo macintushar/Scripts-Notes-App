@@ -19,6 +19,7 @@ export default function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .catch((error) => {
         console.error(error, typeof(error));
+        setLoginError(error)
       });
   }
 
@@ -30,6 +31,7 @@ export default function Login() {
     <div className="flex items-center justify-center h-full">
       <div className="bg-slate-100 dark:bg-slate-700 p-20 rounded dark:shadow-slate-600 hover:shadow-md h-full md:h-fit duration-100">
         <h2 className="mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-100">Sign in to your account</h2>
+        {loginError ? <h1 className='text-red-700'>Error: {loginError}</h1> : <></>}
         <form className='space-y-6' onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700 dark:text-gray-100 text-sm font-medium leading-6">Email</label>
