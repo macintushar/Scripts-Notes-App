@@ -4,7 +4,7 @@ import hiddenImg from '../assets/hidden.png'
 import visibleImg from '../assets/visible.png'
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
 import { app, db} from '../firebaseConfig'
-import { doc, setDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
@@ -19,23 +19,44 @@ export default function SignUp() {
 
         if (password === repeatPassword) {
             const auth = getAuth(app);
+            
             createUserWithEmailAndPassword(auth, email, password)
                 .then(async (userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
-                    
+        
+                    // Update user profile
                     await updateProfile(user, { displayName: name });
                     console.log(user);
-                    
-                    await setDoc(doc(db, "authors", user.uid), {
+        
+                    // Create user document in the "users" collection
+                    const userDocRef = doc(db, "users", user.uid);
+                    await setDoc(userDocRef, {
                         name: name,
                         id: user.uid
                     });
+        
+                    // Create a "notes" subcollection within the user's document
+                    const notesCollectionRef = collection(db, "users", user.uid, "notes");
+                    
+                    // Example: Adding a sample note to the "notes" subcollection
+                    const sampleNote = {
+                        title: "Sample Note",
+                        content: "This is a sample note.",
+                        dateCreated: serverTimestamp(),
+                        dateModified: serverTimestamp(),
+                        tags: ["sample", "demo"]
+                    };
+                    
+                    // Add the sample note to the "notes" subcollection
+                    await addDoc(notesCollectionRef, sampleNote);
+        
+                    console.log("User and notes subcollection created successfully.");
                 })
                 .catch((error) => {
                     console.error('Error creating user:', error);
                 });
-        }
+        }        
     }
 
     const togglePasswordVisibility = () => {
@@ -46,7 +67,7 @@ export default function SignUp() {
     return(
         <div className="flex items-center justify-center h-full">
             <div className="bg-slate-100 dark:bg-slate-700 p-20 rounded dark:shadow-slate-600 shadow-xl h-full md:h-fit">
-                <img src='' />
+                <img src='' alt="" />
                 <h2 className="mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-100">Sign up for an account</h2>
                 <form className='space-y-6' onSubmit={handleSignup}>
                     <div className="mb-4">

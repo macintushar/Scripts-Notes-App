@@ -12,19 +12,23 @@ export default function NewNote() {
         
         const auth = getAuth(app);
         const userId = auth.currentUser?.uid;
-        
+
         try {
-            await addDoc(collection(db, "notes"), {
-                author_id: userId,
+            // Adjust the collection path to users/uid/notes
+            const notesCollectionRef = collection(db, `users/${userId}/notes`);
+
+            await addDoc(notesCollectionRef, {
                 title: new_title,
-                body: new_body,
-                last_modified: serverTimestamp()
+                content: new_body,
+                dateCreated: serverTimestamp(),
+                dateModified: serverTimestamp()
             });
+
+            // Navigate to "/" regardless of online status
+            navigate("/");
         } catch (error) {
-            console.error(error)
-        } finally {
-            navigate("/")
-        }        
+            console.error(error);
+        }
     }
 
   return (
