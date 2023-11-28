@@ -46,7 +46,7 @@ export default function App() {
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
         <Route path="/" element= {user ? <><Navbar /><Home /></> : <Navigate to="/login" />} />
-        <Route path="/note/:id" element= {user ? <><Navbar /><ViewNote session={user} /></> : <Navigate to="/login" />} />\
+        <Route path="/note/:id" element= {user ? <><Navbar /><ViewNote /></> : <Navigate to="/login" />} />\
         <Route path="/new" element= {user ? <><Navbar /><NewNote /></> : <Navigate to="/login" />} />\
       </Routes>
     </>
