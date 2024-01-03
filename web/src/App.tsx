@@ -6,7 +6,6 @@ import { app } from './firebaseConfig';
 import Login from './components/login';
 import Navbar from './components/navbar';
 import Home from './components/home';
-import ViewNote from './components/view-note';
 import SignUp from './components/signup';
 import Note from './components/note';
 import LoadingScreen from './components/loading';
