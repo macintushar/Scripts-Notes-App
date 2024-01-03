@@ -25,12 +25,12 @@ export default function ViewNote() {
 
       if (noteDoc.exists()) {
         const new_title = (document.getElementById("note-title") as HTMLInputElement).value;
-        const new_content = (document.getElementById("note-content") as HTMLInputElement).value;
+        const new_body = (document.getElementById("note-body") as HTMLInputElement).value;
                 
         if (lastModified > noteDoc.data().dateModified) {
           await updateDoc(noteRef, {
             title: new_title,
-            content: new_content,
+            body: new_body,
             lastModified: lastModified,
           });
 
@@ -92,9 +92,9 @@ export default function ViewNote() {
                 <textarea 
                   className='w-full h-min-6xl p-3 focus:ring-0 focus:border-0 mt-2 dark:text-black block rounded-xl' 
                   rows={16}
-                  id="note-content"
+                  id="note-body"
                   placeholder="Some text here.."
-                  defaultValue={userNotes.content ? userNotes.content : "Enter text here...." }
+                  defaultValue={userNotes.body ? userNotes.body : "Enter text here...." }
                   onChange={handleTextChange}
                 />
                 <button 

@@ -3,18 +3,19 @@ import '../App.css'
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
-export default function Notes({ note }, { key }) {
+export default function Notes({ note }) {
 
   function sliceText(text:string, index:number) {
-    if (text.length > index) {
+    if (text?.length > index) {
       text = text.slice(0,index-3) + "...";
     }
     return text;
   }
 
   const note_id:string = note.note_id;
-  const note_body:string = sliceText(note.content,100);
+  const note_body:string = sliceText(note.body,100);
   const note_title:string = sliceText(note.title,30);
   
   async function handleNoteDelete() {
@@ -37,18 +38,32 @@ export default function Notes({ note }, { key }) {
   }
 
   return(
-    <div className="group rounded-xl max-h-128 max-w- w-fit m-3 min-w-[164px] h-fit bg-slate-200 pb-3 shadow-md dark:shadow-slate-500 dark:bg-slate-600 dark:text-white" key={key}>
+    <div className="border-b border-gray-200 dark:border-gray-500 bg-sky-200 dark:bg-slate-600 px-4 py-5 m-2 rounded-2xl sm:px-6">
+      <div className="-ml-4 -mt-4 flex flex-wrap items-center flex-col sm:flex-nowrap">
       <Link to={'/note/' + note_id}>
-      <article className="pt-6 pl-6 pr-6 ">
-        {note_title ? <h1 className="mb-1"><b>{note_title}</b></h1> : <></>}
-        <p className="text-left break-words">{note_body}</p>
+          <div className="ml-4 mt-4">
+            { note_title ? 
+              <h3 className="text-base font-semibold leading-8 text-gray-900 dark:text-slate-300">
+              {note_title}
+              </h3> 
+              : 
+              <></> 
+            }
+            <p className="mt-1 text-sm text-gray-500 dark:text-slate-100">
+              {note_body}
+            </p>
+          </div>
+        </Link>
+        <div className="ml-4 mt-4 flex-shrink-0">
+          <button
+            type="button"
+            className="relative inline-flex items-center rounded-md bg-gray-500 p-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            onClick={handleNoteDelete}
+          >
+            <TrashIcon className="h-8 text-white" />
 
-      </article>
-      </Link>
-      <div className="justify-end items-center flex mt-2 pr-4">
-          <button onClick={handleNoteDelete}>
-            <img className="h-5" src="delete.png" alt="Delete"/>
           </button>
+        </div>
       </div>
     </div>
   )

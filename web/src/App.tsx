@@ -1,17 +1,16 @@
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { app } from './firebaseConfig';
-import { Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { app } from './firebaseConfig';
 
 import Login from './components/login';
 import Navbar from './components/navbar';
 import Home from './components/home';
 import ViewNote from './components/view-note';
 import SignUp from './components/signup';
-import NewNote from './components/new-note';
+import Note from './components/note';
 import LoadingScreen from './components/loading';
+import Profile from './components/profile';
 
 export default function App() {
   const [user, setUser] = useState<any>();
@@ -29,11 +28,11 @@ export default function App() {
       });
   }, []);
 
-
   if (loading) {
     return <LoadingScreen />;
   }
 
+  // Dark mode logic
   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark');
   } else {
@@ -42,13 +41,14 @@ export default function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
-        <Route path="/" element= {user ? <><Navbar /><Home /></> : <Navigate to="/login" />} />
-        <Route path="/note/:id" element= {user ? <><Navbar /><ViewNote /></> : <Navigate to="/login" />} />\
-        <Route path="/new" element= {user ? <><Navbar /><NewNote /></> : <Navigate to="/login" />} />\
-      </Routes>
+        <Routes>
+          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+          <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
+          <Route path="/" element= {user ? <><Navbar /><Home /></> : <Navigate to="/login" />} />
+          <Route path="/note/:id" element= {user ? <><Navbar /><Note /></> : <Navigate to="/login" />} />
+          <Route path="/new" element= {user ? <><Navbar /><Note /></> : <Navigate to="/login" />} />
+          <Route path="/profile" element= {user ? <><Navbar /><Profile /></> : <Navigate to="/login" />} />
+        </Routes>
     </>
   );
 }

@@ -42,7 +42,7 @@ export default function SignUp() {
                     // Example: Adding a sample note to the "notes" subcollection
                     const sampleNote = {
                         title: "Sample Note",
-                        content: "This is a sample note.",
+                        body: "This is a sample note.",
                         dateCreated: serverTimestamp(),
                         dateModified: serverTimestamp(),
                         tags: ["sample", "demo"]

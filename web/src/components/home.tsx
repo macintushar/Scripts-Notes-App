@@ -10,48 +10,36 @@ export default function Home() {
   const [userNotes, setUserNotes] = useState<DocumentData[] | null>(null);
 
   useEffect(() => {
-        const auth = getAuth(app);
+    const auth = getAuth(app);
 
-        // Check for authentication state changes
-        const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            // User is signed in
-            const userId = user.uid;
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+          const userId = user.uid;
+          const notesRef = collection(db, "users", userId, "notes");
+          const q = query(notesRef);
 
-            // Reference to the "notes" subcollection within the user's document
-            const notesRef = collection(db, "users", userId, "notes");
-
-            // Query to get notes for the current user
-            const q = query(notesRef);
-
-            // Subscribe to real-time updates
-            const unsubscribeNotes = onSnapshot(q, (querySnapshot) => {
-              const notes: DocumentData[] = [];
-              querySnapshot.forEach((doc) => {
-                const note_id = doc.id;
-                const note_data = doc.data();
-                note_data["note_id"] = note_id;
-                notes.push(note_data);
-              });
-
-              // Set the user's notes in the state
-              setUserNotes(notes);
+          const unsubscribeNotes = onSnapshot(q, (querySnapshot) => {
+            const notes: DocumentData[] = [];
+            querySnapshot.forEach((doc) => {
+              const note_id = doc.id;
+              const note_data = doc.data();
+              note_data["note_id"] = note_id;
+              notes.push(note_data);
             });
-
-            return () => {
-              // Unsubscribe when the component unmounts
-              unsubscribeNotes();
-            };
-          } else {
-            // User is signed out, handle as needed
-            setUserNotes(null);
-          }
-        });
+            setUserNotes(notes);
+          });
 
         return () => {
-          // Unsubscribe from authentication changes when the component unmounts
-          unsubscribeAuth();
+          unsubscribeNotes();
         };
+      } else {
+        setUserNotes(null);
+      }
+    });
+
+    return () => {
+      unsubscribeAuth();
+    };
 
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
@@ -67,7 +55,7 @@ export default function Home() {
       </div>
     )
   }
-  console.log(userNotes)
+  
   return (
     <>
       <div className='flex justify-center mt-10'>
