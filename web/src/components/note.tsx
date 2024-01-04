@@ -98,13 +98,13 @@ export default function Note() {
     return (
     <>
         <div className="flex justify-center md:m-10">
-            <div className="bg-slate-400 dark:bg-slate-700 rounded-lg container h-full w-full m-2 md:h-fit">
-                <div className="overflow-hidden rounded-lg border border-5 border-gray-900 shadow-sm">
+            <div className="bg-slate-600 dark:bg-slate-700 rounded-lg container h-full w-full m-2 md:h-fit">
+                <div className="overflow-hidden rounded-lg border border-5 dark:border-gray-900 shadow-sm">
                     <label htmlFor="title" className="sr-only">
                     Title
                     </label>
                     <input type="text" name="title" id="note-title"
-                        className="block w-full border-0 p-3 text-lg font-medium placeholder:text-gray-400 focus:ring-0"
+                        className="bg-white dark:bg-zinc-800 text-black dark:text-white block w-full p-3 text-lg font-medium placeholder:text-gray-400"
                         placeholder="Title"
                         defaultValue={ userNotes?.title || '' }
                     />
@@ -112,7 +112,7 @@ export default function Note() {
                         Description
                     </label>
                     <textarea rows={20} name="body" id="note-body"
-                        className="block w-full resize-none border-0 p-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        className="bg-white dark:bg-zinc-800 text-black dark:text-white block w-full resize-none border-0 p-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="Write a description..."    
                         defaultValue={ userNotes?.body || ''}
                         onChange={ handleTextChange }
@@ -120,7 +120,7 @@ export default function Note() {
                     <div className='flex justify-center w-full'>
                         <button
                             onClick={ handleClose }
-                            className="w-full m-2 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                            className="w-full m-2 rounded-md dark:bg-gray-400 bg-black px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm dark:hover:bg-gray-300 hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                         >
                         Close
                         </button>

@@ -38,33 +38,33 @@ export default function Notes({ note }) {
   }
 
   return(
-    <div className="border-b border-gray-200 dark:border-gray-500 bg-sky-200 dark:bg-slate-600 px-4 py-5 m-2 rounded-2xl sm:px-6">
-      <div className="-ml-4 -mt-4 flex flex-wrap items-center flex-col sm:flex-nowrap">
-      <Link to={'/note/' + note_id}>
-          <div className="ml-4 mt-4">
-            { note_title ? 
-              <h3 className="text-base font-semibold leading-8 text-gray-900 dark:text-slate-300">
-              {note_title}
-              </h3> 
-              : 
-              <></> 
-            }
-            <p className="mt-1 text-sm text-gray-500 dark:text-slate-100">
-              {note_body}
-            </p>
-          </div>
-        </Link>
-        <div className="ml-4 mt-4 flex-shrink-0">
-          <button
-            type="button"
-            className="relative inline-flex items-center rounded-md bg-gray-500 p-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-            onClick={handleNoteDelete}
-          >
-            <TrashIcon className="h-8 text-white" />
+    <Link to={'/note/' + note_id}>
+      <div className="border-b border-gray-200 dark:border-gray-500 bg-slate-200 dark:bg-slate-600 px-4 py-5 m-2 rounded-2xl sm:px-6">
+        <div className="-ml-4 -mt-4 flex flex-wrap items-center flex-col sm:flex-nowrap">
+            <div className="ml-4 mt-4">
+              { note_title ? 
+                <h3 className="text-base font-semibold leading-8 text-gray-900 dark:text-slate-300">
+                {note_title}
+                </h3> 
+                : 
+                <></> 
+              }
+              <p className="mt-1 text-sm text-gray-500 dark:text-slate-100">
+                {note_body}
+              </p>
+            </div>
+          <div className="ml-4 mt-4 flex-shrink-0">
+            <button
+              type="button"
+              className="relative inline-flex items-center rounded-md bg-gray-900 dark:bg-gray-300 p-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+              onClick={handleNoteDelete}
+            >
+              <TrashIcon className="h-8 text-white dark:text-gray-800" />
 
-          </button>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
