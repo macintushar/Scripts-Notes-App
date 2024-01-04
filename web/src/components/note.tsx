@@ -120,7 +120,7 @@ export default function Note() {
                     <div className='flex justify-center w-full'>
                         <button
                             onClick={ handleClose }
-                            className="w-full m-2 rounded-md dark:bg-gray-400 bg-black px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm dark:hover:bg-gray-300 hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                            className="w-full m-2 rounded-md dark:bg-slate-300 bg-black px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm dark:hover:bg-slate-400 hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                         >
                         Close
                         </button>
