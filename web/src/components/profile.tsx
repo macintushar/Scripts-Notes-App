@@ -13,16 +13,19 @@ function Profile() {
 
     async function handleProfileChange(event) {
       event.preventDefault();
-      const newPhotoURL:string = event.target[0].value;
-      const newDisplayName:string = event.target[1].value;
-      
-      updateProfile(currentUser, {
-        displayName: newDisplayName, photoURL: newPhotoURL
-      }).then(() => {
-        alert("Updated Profile")
-      }).catch((error) => {
-        alert("Error: " + error)
-      });
+
+      if (currentUser) {
+        const newPhotoURL:string = event.target[0].value;
+        const newDisplayName:string = event.target[1].value;
+        
+        updateProfile(currentUser, {
+          displayName: newDisplayName, photoURL: newPhotoURL
+        }).then(() => {
+          alert("Updated Profile")
+        }).catch((error) => {
+          alert("Error: " + error)
+        });
+      }
     }
 
     return(
