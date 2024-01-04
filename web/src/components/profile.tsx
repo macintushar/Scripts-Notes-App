@@ -29,12 +29,12 @@ function Profile() {
   }
 
   return(
-      <div className="container mx-auto">
-          <div className="divide-y divide-white/5">
-            <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+      <div className="container mx-auto w-fit">
+          <div className="">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
               <div>
-                <h2 className="text-base font-semibold leading-7 text-white">Personal Information</h2>
-                <p className="mt-1 text-sm leading-6 text-gray-400">
+                <h2 className="text-base font-semibold leading-7 text-black dark:text-gray-400">Personal Information</h2>
+                <p className="mt-1 text-sm leading-6 text-gray-900 dark:text-gray-400">
                   Use a permanent address where you can receive email.
                 </p>
               </div>
@@ -48,7 +48,7 @@ function Profile() {
                       className="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
                     />    
                     <div className="flex flex-col gap-2 w-full">
-                    <label htmlFor="name" className="block text-sm font-medium leading-6 text-white">
+                    <label htmlFor="name" className="block text-sm font-medium leading-6 text-black dark:text-white">
                       Profile Picture URL
                     </label>
                     <input
@@ -56,13 +56,13 @@ function Profile() {
                         name="profile-picture-url"
                         id="profile-picture-url"
                         autoComplete="profile-picture-url"
-                        className="rounded-md border-0 p-2 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                        className="rounded-md border-0 p-2 bg-gray-600/5 dark:bg-white/5 py-1.5 text-black dark:text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
                         defaultValue={ user.imageUrl }
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-full">
-                    <label htmlFor="name" className="block text-sm font-medium leading-6 text-white">
+                    <label htmlFor="name" className="block text-sm font-medium leading-6 text-black dark:text-white">
                       Name
                     </label>
                     <div className="mt-2">
@@ -72,7 +72,7 @@ function Profile() {
                         id="name"
                         autoComplete="name"
                         defaultValue={ user.name || "" }
-                        className="block w-full p-2 rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                        className="block w-full p-2 rounded-md border-0 bg-gray-600/5 dark:bg-white/5 py-1.5 text-black dark:text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -89,9 +89,9 @@ function Profile() {
               </form>
             </div>
 
-            <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
               <div>
-                <h2 className="text-base font-semibold leading-7 text-white">Change password</h2>
+                <h2 className="text-base font-semibold leading-7 text-black dark:text-white">Change password</h2>
                 <p className="mt-1 text-sm leading-6 text-gray-400">
                   Update your password associated with your account.
                 </p>
@@ -100,7 +100,7 @@ function Profile() {
               <form className="md:col-span-2">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
                   <div className="col-span-full">
-                    <label htmlFor="current-password" className="block text-sm font-medium leading-6 text-white">
+                    <label htmlFor="current-password" className="block text-sm font-medium leading-6 text-black dark:text-white">
                       Current password
                     </label>
                     <div className="mt-2">
@@ -109,13 +109,13 @@ function Profile() {
                         name="current_password"
                         type="password"
                         autoComplete="current-password"
-                        className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 bg-gray-600/5 dark:bg-white/5 py-1.5 text-black dark:text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
 
                   <div className="col-span-full">
-                    <label htmlFor="new-password" className="block text-sm font-medium leading-6 text-white">
+                    <label htmlFor="new-password" className="block text-sm font-medium leading-6 text-black dark:text-white">
                       New password
                     </label>
                     <div className="mt-2">
@@ -124,13 +124,13 @@ function Profile() {
                         name="new_password"
                         type="password"
                         autoComplete="new-password"
-                        className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 bg-gray-600/5 dark:bg-white/5 py-1.5 text-black dark:text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
 
                   <div className="col-span-full">
-                    <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-white">
+                    <label htmlFor="confirm-password" className="block text-sm font-medium leading-6 text-black dark:text-white">
                       Confirm password
                     </label>
                     <div className="mt-2">
@@ -139,7 +139,7 @@ function Profile() {
                         name="confirm_password"
                         type="password"
                         autoComplete="new-password"
-                        className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 bg-gray-600/5 dark:bg-white/5 py-1.5 text-black dark:text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
